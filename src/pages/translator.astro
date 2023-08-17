@@ -1,0 +1,74 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import ButtonSubmit from "../components/Buttons/ButtonSubmit.svelte";
+import Close from "../components/icons/Close.svelte";
+import ButtonClipboard from "../components/Buttons/ButtonClipboard.svelte";
+import ButtonSwift from "../components/Buttons/ButtonSwift.svelte";
+---
+
+<Layout title="traductor">
+  <main>
+    
+    
+    <header class="flex-wrap justify-between sm:gap-12 text-center sm:flex bg-slate-200 py-4 px-12 mt-24 mx-24">
+      <span id="first-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900">
+        Español
+      </span>
+      <ButtonSwift client:only/>
+      <span id="second-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900 b-">
+        Inglés
+      </span>
+    </header>
+ 
+    <div
+      class="max-h-screen flex-wrap justify-center gap-12 text-center sm:flex bg-slate-950 py-12 px-12 mx-24"
+    >
+      <label class="text-gray-700 relative" for="name">
+        <textarea
+          class="flex-1 w-full px-4 py-8 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          placeholder="Type to translate..."
+          id="my-textarea-request"
+          rows="10"
+          cols="80"></textarea>
+        <button
+          id="clear-button"
+          class="absolute top-0 right-0 mt-2 mr-4 px-2 py-1 text-gray-700 ml-2"
+          ><Close/></button
+        >
+      </label>
+
+      <label class="text-gray-700 relative" for="name">
+        <textarea
+          disabled
+          class="flex-1 w-full px-4 py-8 text-base text-gray-700 placeholder-gray-400 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          id="my-textarea-result"
+          rows="10"
+          cols="80"></textarea>
+          <ButtonClipboard client:visible />
+      </label>
+    </div>
+
+    <div
+      class="max-h-screen flex-wrap justify-center text-center sm:flex bg-slate-950 py-12 px-12 mx-24"
+    ><ButtonSubmit client:visible/></div>
+  </main>
+</Layout>
+
+<script>
+  const eraseText = document.getElementById("clear-button");
+  const myTextareaRequest = document.getElementById("my-textarea-request") as HTMLTextAreaElement;
+  const myTextareaResult = document.getElementById("my-textarea-result") as HTMLTextAreaElement;
+  eraseText?.addEventListener("click", () => {
+    myTextareaRequest.value = "";
+    myTextareaResult.value = "";
+  });
+</script>
+
+<style>
+  label button:hover {
+    color: #000000;
+    background-color: #b8b8b880;
+    border-color: none;
+  }
+</style>
