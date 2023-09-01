@@ -5,6 +5,7 @@ import ButtonSubmit from "../components/Buttons/ButtonSubmit.svelte";
 import Close from "../components/icons/Close.svelte";
 import ButtonClipboard from "../components/Buttons/ButtonClipboard.svelte";
 import ButtonSwift from "../components/Buttons/ButtonSwift.svelte";
+import CustomSelect from "../components/CustomSelect";
 ---
 
 <Layout title="traductor">
@@ -12,13 +13,20 @@ import ButtonSwift from "../components/Buttons/ButtonSwift.svelte";
     
     
     <header class="flex-wrap justify-between sm:gap-12 text-center sm:flex bg-slate-200 py-4 px-12 mt-24 mx-24">
-      <span id="first-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900">
+      <!--<span id="first-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900">
         Español
-      </span>
+      </span>-->
+      <div id="from" class="sm:w-1/3  lg:w-1/6">
+        <CustomSelect dynamicId="my-auto-select" client:visible />
+      </div>
       <ButtonSwift client:only/>
-      <span id="second-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900 b-">
+      <div id="to" class="sm:w-1/3 lg:w-1/6">
+        <CustomSelect dynamicId="my-custom-select" client:visible />
+      </div>
+      
+      <!--<span id="second-badge" class="w-32 py-2 font-medium justify-center text-2xl text-gray-900 b-">
         Inglés
-      </span>
+      </span>-->
     </header>
  
     <div

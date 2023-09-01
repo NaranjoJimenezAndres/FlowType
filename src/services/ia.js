@@ -1,6 +1,9 @@
-const COHERE_API_KEY = "Z1wxIANl1VNVHA4U9NekVQPLQwH2q0KnGTTJD4d5";
-const COHERE_API_GENERATE_URL = "https://api.cohere.ai/generate";
-const COHERE_API_DETECT_LANGUAGE_URL = "https://api.cohere.ai/detect-language";
+
+const TRADUCTOR_API_KEY = import.meta.env.PUBLIC_TRADUCTOR_API_KEY
+const COHERE_API_GENERATE_URL = import.meta.env.PUBLIC_COHERE_API_GENERATE_URL
+const COHERE_API_KEY = import.meta.env.PUBLIC_COHERE_API_KEY
+const COHERE_API_AUTODETECT_URL = import.meta.env.PUBLIC_COHERE_API_DETECT_LANGUAGE_URL
+
 
 import CustomSelect from "../components/CustomSelect";
 
@@ -15,17 +18,42 @@ curl --location --request POST 'https://api.cohere.ai/v1/classify' \
   }'
  */
 
-export async function fixMyEnglish(input, language) {
+  export async function fixMyEnglish(input) {
+
+    const url = 'https://api-free.deepl.com/v2/translate';
+    const apiKey = '856091ff-3df5-5048-485d-ed2b955c6d88:fx'; // Reemplaza esto con tu clave de autenticación
+    const textToTranslate = ["Hello, world!"];
+    const targetLang = "DE";
+    
+    const headers = {
+      'Authorization': `DeepL-Auth-Key ${apiKey}`,
+      'Content-Type': 'application/json'
+    };
+    
+    const data = {
+      text: textToTranslate,
+      target_lang: targetLang
+    };
+    
+    fetch(url, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log(result); // Hacer algo con la respuesta JSON
+    })
+    .catch(error => {
+      console.error('Error:', error);
+    });
+
+  }
+
+//*export async function fixMyEnglish(input, language) {
     //var a = document.getElementById("first-badge").innerText;
     /**var b = document.getElementById("second-badge").innerText;
 
-    if (a == "Inglés" && b == "Español") {
-        var a = "English";
-        var b = "Spanish";
-    } else if (a == "Español" && b == "Inglés") {
-        var a = "Spanish";
-        var b = "English";
-    }**/
     const data = {
         model: "xlarge",
         prompt: `This is a languaje translator, we have to translate "${input}" from Spanish to "${language}".
@@ -69,7 +97,7 @@ export async function fixMyEnglish(input, language) {
 
     const { text } = response.generations[0];
     return text.split("\n")[0].replace("--", "").replaceAll('"', "").trim();
-}
+}++*/
 
 export async function prepareMyPrompt(language) {
 

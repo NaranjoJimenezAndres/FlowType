@@ -1,7 +1,7 @@
 <script>
-    import { fixMyEnglish } from "../services/ia.js";
-    import Loading from "./icons/Loading.svelte";
-    import Translate from "./icons/Translate.svelte";
+    import { fixMyEnglish } from "../../services/ia.js";
+    import Loading from "../icons/Loading.svelte";
+    import Translate from "../icons/Translate.svelte";
   
     let promise = null;
   
