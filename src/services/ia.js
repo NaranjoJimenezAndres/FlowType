@@ -21,7 +21,7 @@ curl --location --request POST 'https://api.cohere.ai/v1/classify' \
   export async function fixMyEnglish(input) {
 
     const url = 'https://api-free.deepl.com/v2/translate';
-    const apiKey = '856091ff-3df5-5048-485d-ed2b955c6d88:fx'; // Reemplaza esto con tu clave de autenticación
+    const apiKey = ''; // Reemplaza esto con tu clave de autenticación
     const textToTranslate = ["Hello, world!"];
     const targetLang = "DE";
     
